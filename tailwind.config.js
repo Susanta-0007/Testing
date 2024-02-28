@@ -13,8 +13,8 @@ export default {
         "gray": "#7C7C7C",
       },
       screens:{
-        "mobile":"430px",
-        "tablet":"756px",
+        "mobile":"500px",
+        "tablet":"820px",
       }
     },
   },
