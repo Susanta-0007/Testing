@@ -1,12 +1,14 @@
-// import React from "react";
-
 import { useState } from "react";
-import { CiLock, CiMail } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+import { CiLock, CiMail } from "react-icons/ci";
+import { IoEyeOutline,IoEyeOffOutline } from "react-icons/io5";
 
 
-    const RegisterForm = () => {  
-    const [tab,setTab]=useState("Patient");
+
+const RegisterForm = () => {
+    const [tab, setTab] = useState("Patient");
+    const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+    
     const navigate = useNavigate();
 
     const handleRouting = () => {
@@ -21,13 +23,13 @@ import { useNavigate } from "react-router-dom";
 
                 <div className="flex border-black mobile:border-gray  border-2 rounded-full justify-around text-lg " >
                     <div
-                    onClick={()=>{setTab("Patient")}}
-                    className={`w-[50%] py-2 text-center rounded-l-full cursor-pointer ${tab==="Patient" ? "bg-white mobile:bg-blue" : "text-white mobile:text-black"} `}>Patient</div>
+                        onClick={() => { setTab("Patient") }}
+                        className={`w-[50%] py-2 text-center rounded-l-full cursor-pointer ${tab === "Patient" ? "bg-white mobile:bg-blue text-blue mobile:text-white " : "text-white mobile:text-blue"} `}>Patient</div>
 
 
                     <div
-                     onClick={()=>{setTab("Doctor")}} 
-                    className={`w-[50%] py-2 text-center rounded-r-full cursor-pointer ${tab==="Doctor" ? "bg-white mobile:bg-blue" : "text-white mobile:text-black"} `}>Doctor</div>
+                        onClick={() => { setTab("Doctor") }}
+                        className={`w-[50%] py-2 text-center rounded-r-full cursor-pointer ${tab === "Doctor" ? "bg-white mobile:bg-blue text-blue mobile:text-white" : "text-white mobile:text-blue"} `}>Doctor</div>
                 </div>
 
                 {/* NAME */}
@@ -36,7 +38,7 @@ import { useNavigate } from "react-router-dom";
                     <div className="border-[0.01rem] border-gray rounded-full py-2 px-2 w-full relative flex gap-2 items-center bg-white ">
 
                         <input type="email" id="Email" name="Email" placeholder="Enter First Name"
-                            className=" border-none outline-none w-full  placeholder:text-blue placeholder:opacity-80" />
+                            className=" border-none outline-none w-full  placeholder:text-blue text-blue placeholder:opacity-80" />
                     </div>
                     <div className="border-[0.01rem] border-gray rounded-full py-2 px-2 w-full relative flex gap-2 items-center bg-white ">
 
@@ -57,15 +59,39 @@ import { useNavigate } from "react-router-dom";
 
                 <div className="border-[0.01rem] border-gray rounded-full py-2 px-2 w-full relative flex gap-2 items-center bg-white ">
                     <CiLock fontSize={24} className="text-blue" />
-                    <input type="password" id="Password" name="Password" placeholder="Enter Password"
+                    <input  type={isPasswordVisible ? "password": "text"} id="Password" name="Password" placeholder="Enter Password"
                         className=" border-none outline-none w-full text-blue placeholder:text-blue placeholder:opacity-80" />
+                    <div
+                className="cursor-pointer"
+                onClick={() => {
+                  setIsPasswordVisible(!isPasswordVisible);
+                }}
+              >
+                {isPasswordVisible ? (
+                  <IoEyeOutline fontSize={24} className="text-blue" />
+                ) : (
+                  <IoEyeOffOutline fontSize={24} className="text-blue" />
+                )}
+              </div>
                 </div>
 
                 {/* Conform Password Input */}
                 <div className="border-[0.01rem] border-gray rounded-full py-2 px-2 w-full relative flex gap-2 items-center bg-white ">
                     <CiLock fontSize={24} className="text-blue" />
-                    <input type="password" id="Password" name="Password" placeholder="Confirm Password"
+                    <input  type={isPasswordVisible ? "password": "text"} id="Password" name="Password" placeholder="Confirm Password"
                         className=" border-none outline-none w-full text-blue placeholder:text-blue placeholder:opacity-80" />
+                        <div
+                className="cursor-pointer"
+                onClick={() => {
+                  setIsPasswordVisible(!isPasswordVisible);
+                }}
+              >
+                {isPasswordVisible ? (
+                  <IoEyeOutline fontSize={24} className="text-blue" />
+                ) : (
+                  <IoEyeOffOutline fontSize={24} className="text-blue" />
+                )}
+              </div>
                 </div>
 
                 {/* Login Button */}
