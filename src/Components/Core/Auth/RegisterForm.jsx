@@ -8,6 +8,7 @@ import { IoEyeOutline,IoEyeOffOutline } from "react-icons/io5";
 const RegisterForm = () => {
     const [tab, setTab] = useState("Patient");
     const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+    const [isCnfPasswordVisible,setIsCnfPasswordVisible]=useState(true);
     
     const navigate = useNavigate();
 
@@ -21,15 +22,15 @@ const RegisterForm = () => {
 
                 {/* Selection */}
 
-                <div className="flex border-black mobile:border-gray  border-2 rounded-full justify-around text-lg " >
+                <div className="flex border-gray border-[0.01rem] px-1 py-1 rounded-full justify-around text-lg bg-white " >
                     <div
                         onClick={() => { setTab("Patient") }}
-                        className={`w-[50%] py-2 text-center rounded-l-full cursor-pointer ${tab === "Patient" ? "bg-white mobile:bg-blue text-blue mobile:text-white " : "text-white mobile:text-blue"} `}>Patient</div>
+                        className={`w-[50%] py-2 text-center rounded-l-full cursor-pointer ${tab === "Patient" ? "bg-darkBlue  text-white mobile:text-white " : "text-blue "} `}>Patient</div>
 
 
                     <div
                         onClick={() => { setTab("Doctor") }}
-                        className={`w-[50%] py-2 text-center rounded-r-full cursor-pointer ${tab === "Doctor" ? "bg-white mobile:bg-blue text-blue mobile:text-white" : "text-white mobile:text-blue"} `}>Doctor</div>
+                        className={`w-[50%] py-2 text-center rounded-r-full cursor-pointer ${tab === "Doctor" ? "bg-darkBlue  text-white mobile:text-white" : "text-blue"} `}>Doctor</div>
                 </div>
 
                 {/* NAME */}
@@ -78,15 +79,15 @@ const RegisterForm = () => {
                 {/* Conform Password Input */}
                 <div className="border-[0.01rem] border-gray rounded-full py-2 px-2 w-full relative flex gap-2 items-center bg-white ">
                     <CiLock fontSize={24} className="text-blue" />
-                    <input  type={isPasswordVisible ? "password": "text"} id="Password" name="Password" placeholder="Confirm Password"
+                    <input  type={isCnfPasswordVisible ? "password": "text"} id="Password" name="Password" placeholder="Confirm Password"
                         className=" border-none outline-none w-full text-blue placeholder:text-blue placeholder:opacity-80" />
                         <div
                 className="cursor-pointer"
                 onClick={() => {
-                  setIsPasswordVisible(!isPasswordVisible);
+                  setIsCnfPasswordVisible(!isCnfPasswordVisible);
                 }}
               >
-                {isPasswordVisible ? (
+                {isCnfPasswordVisible ? (
                   <IoEyeOutline fontSize={24} className="text-blue" />
                 ) : (
                   <IoEyeOffOutline fontSize={24} className="text-blue" />
