@@ -1,43 +1,57 @@
-// import React from "react";
-
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import AuthBgImage from "../../../assets/AuthBgImage.svg";
+import ForgotPasswordForm from "./ForgotPasswordForm";
+import UpdatePasswordForm from "./UpdatePasswordForm";
 
-// eslint-disable-next-line react/prop-types
-const Template = ({formType}) => {
+// import registerAuthBg from "../../../assets/authimages/register-bg.jpg";
+import RegisterBG from "./RegisterBG";
+import LoginBG from "./LoginBG";
 
-    console.log(formType);
+
+const Template = ({ formType }) => {
+
+    // console.log(formType);
 
     const isLogin = (formType === "Login");
-    
-    return(
-        <div className={`h-[100vh] w-full flex  justify-between ${isLogin ? " flex-row" : "flex-row-reverse"}`}>
+    const isRegister = (formType === "Register");
+    const isUpdatePassword = (formType === "updatePassword");
+
+
+    return (
+        <div className={`h-[100vh] w-full flex  justify-between ${!isRegister ? " flex-row" : "flex-row-reverse"}`}>
             {/* Left Div Form Div */}
-            <div className="flex flex-col justify-start items-center w-[100%] mobile:w-[80%] tablet:w-[40%] bg-blue mobile:bg-white gap-24 pt-16">
-                <h1 className="text-2xl font-bold">
-                    {
-                        isLogin ? "Login" : "Register"
-                    }
-                </h1>
+            <div className="flex flex-col justify-start items-center w-[100%] mobile:w-[60%] tablet:w-[50%]  gap-24 ">
                 <div className="w-full">
                     {
-                        isLogin? (<LoginForm />) : (<RegisterForm />)
+                        isLogin ? (<LoginForm />) :
+                            (
+                                isRegister ? (<RegisterForm />) :
+                                    (
+                                        isUpdatePassword ? (<UpdatePasswordForm />) : (<ForgotPasswordForm />)
+                                    )
+                            )
                     }
                 </div>
             </div>
 
             {/* Righgt Div Image Div */}
-            <div className=" flex-col justify-around items-center w-[60%] bg-blue hidden mobile:flex  ">
-                <h2 className="text-xl font-semibold  text-white">
-                    Lorem Ipsum
-                </h2>
-                <div className="">
-                    <img src={AuthBgImage} alt="DisplayImage" className="w-full h-full"/>
-                </div>
-                <h3 className="text-xl font-semibold  text-white">
-                    Pulse Pro
-                </h3>
+            <div className=" h-full w-[50%] bg-[#3A8064] hidden mobile:flex    ">
+                {/* <div className="text-xl font-semibold text-white py-4 px-4">Get a good health routine</div>
+               <img className="w-[90%] h-[70%]   " src={loginAuthBg} alt="" />
+               <div className="text-xl font-semibold text-white px-4 py-2">With PulsePro</div> */}
+
+                {
+                    isLogin ? (<LoginBG />) :
+                        (
+                            isRegister ? (<RegisterBG />) : 
+                            (
+                                isUpdatePassword ? (<LoginBG />) : (<LoginBG />)
+                            )
+
+                        )
+                }
+
             </div>
         </div>
     );
